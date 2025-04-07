@@ -1,5 +1,5 @@
 {
-  "name": "burnaboy-dapp",
+  "name": "burnaboy-next-netlify",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
@@ -7,11 +7,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^0.9.14",
-    "ethers": "^6.6.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "@rainbow-me/rainbowkit": "^0.10.2",
+    "ethers": "^6.6.0",
     "wagmi": "^1.4.7",
     "viem": "^1.6.4"
   }
