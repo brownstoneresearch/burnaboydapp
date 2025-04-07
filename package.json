@@ -1,5 +1,5 @@
 {
-  "name": "burnaboy-next-netlify",
+  "name": "burnaboy-dapp",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
